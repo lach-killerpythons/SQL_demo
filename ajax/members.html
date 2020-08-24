@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>members page</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Knewave&display=swap" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+
+</head>
+<body>
+<h1>Current Members:</h1>
+
+<div id = "lavender_container">
+    <h1>testing</h1>>
+<ul id="users"></ul>
+
+    <script>
+    $.getJSON('http://localhost:3000/users', function(data){
+        $.each(data, function(i, user){
+            $('ul#users').append('<li>'+user.name+' : '+user.email+'</li>');
+        });
+    });
+</script>
+
+</div>
+
+<br>
+<br>
+<br>
+<h1> Become a Member! </h1>
+<form id="postForm" action="http://localhost:3000/users">
+    <textarea placeholder="Name" id="name"></textarea><br>
+    <textarea placeholder="Email" id="email"></textarea><br>
+    <input type="submit" value="Submit">
+</form>
+<script>
+
+    $('#postForm').submit(function(e){
+        e.preventDefault();
+
+        var name = $('#name').val();
+        var email = $('#email').val();
+
+        var SP_email = email.split('');
+        window.alert(SP_email.length + "doodle");
+        var AT_sign = "@"
+        for(int i = 0; i < SP_email.length; i++){
+            var current_letter = SP_email[0];
+            if(current_letter == AT_sign)
+
+        }
+
+        var url = $(this).attr('action') + '?name='+name+'&email='+email;
+        // http://localhost:3000/test?name=jimin&email=jamin@jonestown.com
+
+
+        $.post(url, {name, email}).done(function(data){
+            console.log('Post Saved:' + name + "goochi");
+            console.log(data);
+            window.alert("New member " + name + " Joined");
+            location.reload();
+        });
+    });
+</script>
+
+
+</body>
+</html>

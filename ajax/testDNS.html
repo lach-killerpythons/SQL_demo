@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    var dns = require('dns');
+    function emailDNS() { dns.lookup('gmail.com', function (err, addresses, family) {
+        window.alert(addresses + "yellow");
+    })
+    };
+    </script>
+</head>
+<body>
+<h1>yellow</h1>
+<button onclick="emailDNS()">Email DNS</button>
+</body>
+</html>

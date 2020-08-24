@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <a href="https://www.tutorialspoint.com/html5/html5_indexeddb.htm">Tutorial located here</a><br>
+    <meta http-equiv = "Content-Type" content = "text/html; charset = utf-8" />
+    <script type = "text/javascript">
+
+         //prefixes of implementation that we want to test
+         window.indexedDB = window.indexedDB || window.mozIndexedDB ||
+         window.webkitIndexedDB || window.msIndexedDB;
+
+         //prefixes of window.IDB objects
+         window.IDBTransaction = window.IDBTransaction ||
+         window.webkitIDBTransaction || window.msIDBTransaction;
+         window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange ||
+         window.msIDBKeyRange
+
+         function hello(){
+            window.alert("hello world");
+            console.log("something happens");
+         }
+
+         if (!window.indexedDB) {
+            window.alert("Your browser doesn't support a stable version of IndexedDB.")
+         }
+
+         const employeeData = [
+            { id: "00-01", name: "gopal", age: 35, email: "gopal@tutorialspoint.com" },
+            { id: "00-02", name: "prasad", age: 32, email: "prasad@tutorialspoint.com" }
+         ];
+         var db;
+         var request = window.indexedDB.open("newDatabase", 1);
+
+         var transaction = db.transaction([],  IDBTransaction.READ_WRITE, 2000);
+            transaction.oncomplete = function(){
+              window.alert("Success transaction");
+             };
+         var objectStore = transaction.objectStore('customers');
+
+         request.onupgradeneeded = function(event) {
+            var db = event.target.result;
+            var objectStore = db.createObjectStore("employee", {keyPath: "id"});
+
+            for (var i in employeeData) {
+               objectStore.add(employeeData[i]);
+            }
+         }
+
+
+
+
+         function add() {
+            window.alert("adding")
+            var objectStore = db.createObjectStore("employee", {keyPath: "id"});
+            request = db.transaction(["employee"], "readwrite")
+            .objectStore("employee")
+            .add({ id: "00-03", name: "Kenny", age: 19, email: "kenny@planet.org" });
+
+            request.onsuccess = function(event) {
+               window.alert("Kenny has been added to your database.");
+            };
+
+            request.onerror = function(event) {
+               window.alert("Unable to add data\r\nKenny is aready exist in your database! ");
+            }
+         }
+
+         function remove() {
+            var request = db.transaction(["employee"], "readwrite")
+            .objectStore("employee")
+            .delete("00-03");
+
+            request.onsuccess = function(event) {
+               alert("Kenny's entry has been removed from your database.");
+            };
+         }
+      </script>
+
+</head>
+<body>
+<button onclick = "hello()">Read </button>
+<button onclick = "readAll()">Read all </button>
+<button onclick = "add()">Add data </button>
+<button onclick = "remove()">Delete data </button>
+</body>
+</html>

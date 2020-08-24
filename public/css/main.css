@@ -1,0 +1,50 @@
+head {
+
+}
+
+#lavender_container{
+            background-color: #92a8d1;
+            color: white;
+            width:90%;
+            margin:auto;
+            padding:20px;
+}
+
+textarea {
+   resize: none;
+   width: 200px;
+   height: 20px;
+}
+
+body {
+
+	background-color : lightblue;
+	color : yellow;
+
+}
+
+h1 {
+	font-family: 'Knewave', cursive;
+	background-color : black;
+	color : white;
+}
+
+h3 {
+  text-align: center;
+}
+
+.fruits {
+    background: url(tomato.jpg) no-repeat;
+
+    width:32px; height:32px;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+}

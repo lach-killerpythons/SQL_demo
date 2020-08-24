@@ -1,0 +1,31 @@
+doctype html
+html
+	head
+		title Welcome to eforrests.org! 2020
+		link(rel='stylesheet', href='css/main.css')
+		link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Knewave&display=swap")
+		script(src='hellopug.js')
+	body
+		h1 This is the users page
+		h2 welcome
+		p Welcome to member page
+		p see our current users
+		a(class= 'button' href='users') users
+		p hello joe
+		br
+		br
+		button(type='button' onclick='helloPug()') hellopug
+		br
+
+		br
+		h2 name
+		textarea(id="name", maxLength = 15) name
+		br
+		br
+		h2 email
+		textarea(id="email", maxLength = 30) email
+		br
+		button(type='button' onclick='createLink()') Submit
+		br
+		button(type='button' onclick="location.href='http://localhost:3000/'") home
+		//<input type="button" onclick="location.href='https://google.com';" value="Go to Google" />
